@@ -6,15 +6,8 @@ class EbookSpider(Spider):
     start_urls = ['https://books.toscrape.com/']
 
     def parse(self, response):
-        ebooks = response.css("article")
         print('[ PARSE ]')
-        for ebook in ebooks:
-            title = ebook.css('a::text').get()
-            price = ebook.css('p.price_color::text').get()
-            yield {
-                "title": title,
-                "price": price
-            }
-
-
-
+        print(f'element "a" with title attribute generalized{response.css("a[title]").get()}')
+        print(f'element "a" with href attribute{response.css("a[href]").get()}')
+        print(f'element "a" with class attribute{response.css("a[class]").get()}')
+        print(f'element "a" with title attribute specified{response.css("a[title = 'The Coming Woman: A Novel Based on the Life of the Infamous Feminist, Victoria Woodhull']").get()}')
